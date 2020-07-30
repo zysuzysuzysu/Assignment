@@ -16,17 +16,22 @@ import os.path
 print(os.getcwd())
 print(os.listdir())
 
-#filename = input("What file name do you want your files to be saved as? ")
-#filename = str(filename+".txt")
+filename = input("What file name do you want your files to be saved as? ")
 directory = input("\nWhich directory would you like your file to be saved? ")
 
 def main():
-	check_if_exist = os.path.isdir(directory)
-	if check_if_exist==True:
-		print("Successful")
-	elif check_if_exist == False:
+	print(os.path.isdir(directory))
+	try:
+		with open(filename, 'w') as text_file:
+			text_file.write("Bang")
+		file = open(os.path.join(directory, filename+".txt"))
+		check_if_exist = os.path.isdir(directory)
+		print(check_if_exist)
+	except:
 		print("Directory does not exist! Please create a new directory: ")
 		new_directory = input("")
 		os.mkdir(new_directory)
+	else:
+		print("successful")
 
 main()
