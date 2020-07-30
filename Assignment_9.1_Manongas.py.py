@@ -22,11 +22,8 @@ directory = input("\nWhich directory would you like your file to be saved? ")
 def main():
 	print(os.path.isdir(directory))
 	try:
-		with open(filename, 'w') as text_file:
+		with open(os.path.join(directory, filename+".txt"),"w") as text_file:
 			text_file.write("Bang")
-		file = open(os.path.join(directory, filename+".txt"))
-		check_if_exist = os.path.isdir(directory)
-		print(check_if_exist)
 	except:
 		print("Directory does not exist! Please create a new directory: ")
 		new_directory = input("")
