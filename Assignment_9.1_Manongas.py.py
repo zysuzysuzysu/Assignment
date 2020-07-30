@@ -12,23 +12,34 @@ Creating a program that performs file processing activities:
 '''
 
 import os.path
+import json
 
 print(os.getcwd())
 print(os.listdir())
 
-filename = input("What file name do you want your files to be saved as? ")
-directory = input("\nWhich directory would you like your file to be saved? ")
-
+def AskInformation():
+	name = input("Name: ")
+	address = input("Address: ")
+	phone_num = input("Phone number: ")
+	dictionary = {'name': name, 'address': address, 'phone_num': phone_num}
+	return dictionary
+	
 def main():
-	print(os.path.isdir(directory))
+	directory = input("Which directory would you like your file to be saved? ")
+	filename = input("What file name do you want your files to be saved as? ")
+
 	try:
-		with open(os.path.join(directory, filename+".txt"),"w") as text_file:
-			text_file.write("Bang")
-	except:
+		with open(os.path.join(directory, filename+".json"),"w") as text_file:
+			json.dump(AskInformation(), text_file)
+
+	except FileNotFoundError:	
 		print("Directory does not exist! Please create a new directory: ")
 		new_directory = input("")
 		os.mkdir(new_directory)
+
+		with open(os.path.join(new_directory, filename+".json"),"w") as text_file:
+					json.dump(AskInformation(), text_file)
 	else:
-		print("successful")
+		print(f"Your file is successfully saved in directory {directory}!")
 
 main()
