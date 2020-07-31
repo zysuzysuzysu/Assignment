@@ -18,11 +18,11 @@ print(os.getcwd())
 print(os.listdir())
 
 def AskInformation():
-	name = input("Name: ")
-	address = input("Address: ")
-	phone_num = input("Phone number: ")
-	dictionary = {'name': name, 'address': address, 'phone_num': phone_num}
-	return dictionary
+	name = input("Name: ").split(",")
+	address = input("Address: ").split(",")
+	phone_num = input("Phone number: ").split(",")
+	information = name + address + phone_num
+	return information
 	
 def main():
 	directory = input("Which directory would you like your file to be saved? ")
@@ -40,6 +40,6 @@ def main():
 		with open(os.path.join(new_directory, filename+".json"),"w") as text_file:
 					json.dump(AskInformation(), text_file)
 	else:
-		print(f"Your file is successfully saved in directory {directory}!")
-
+		pass
+		
 main()
