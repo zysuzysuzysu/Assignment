@@ -40,6 +40,13 @@ def main():
 		with open(os.path.join(new_directory, filename+".json"),"w") as text_file:
 					json.dump(AskInformation(), text_file)
 	else:
-		pass
+		
+		print("Output Information:")
+
+		with open(os.path.join(directory, filename+".json"),"r") as read_file:
+			contents = read_file.read()
+			print(contents)
+
+
 		
 main()
