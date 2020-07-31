@@ -29,7 +29,7 @@ def main():
 	filename = input("What file name do you want your files to be saved as? ")
 
 	try:
-		with open(os.path.join(directory, filename+".json"),"w") as text_file:
+		with open(os.path.join(directory, filename+".txt"),"w") as text_file:
 			json.dump(AskInformation(), text_file)
 
 	except FileNotFoundError:	
@@ -37,16 +37,15 @@ def main():
 		new_directory = input("")
 		os.mkdir(new_directory)
 
-		with open(os.path.join(new_directory, filename+".json"),"w") as text_file:
+		with open(os.path.join(new_directory, filename+".txt"),"w") as text_file:
 					json.dump(AskInformation(), text_file)
-	else:
-		
+	else:		
 		print("Output Information:")
 
-		with open(os.path.join(directory, filename+".json"),"r") as read_file:
+		with open(os.path.join(directory, filename+".txt"),"r") as read_file:
 			contents = read_file.read()
 			print(contents)
 
 
-		
+
 main()
