@@ -16,7 +16,7 @@ import os # importing OS library
 def AskInformation():
 	"""Get input information from user"""
 	 # ask inputs from user and making sure its converted into strings
-	name = str(input("\tName: "))
+	name = str(input("\n\tName: "))
 	name = name.strip() # takes out any spaces before and after the input
 	name = name.title() # name is ensured to be in Title case
 
@@ -35,7 +35,7 @@ def AskInformation():
 		formatted_phone_num = f"{split_num_1}-{split_num_2}-{split_num_3}. Memo: More than 10 digits have been detected, but was truncated." # puts memo for more than amount
 	else: # satisfies the given amount
 		formatted_phone_num = f"{split_num_1}-{split_num_2}-{split_num_3}" # string's new format
-	
+
 	return f"{name}, {address}, {formatted_phone_num}"
 
 def main():
