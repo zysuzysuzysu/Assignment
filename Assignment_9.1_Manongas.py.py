@@ -13,28 +13,13 @@ Creating a program that performs file processing activities:
 
 import os # importing OS library
 
-class Files:
-	def __init__(self, directory, filename):
-		self.directory = directory
-		self.filename = filename
-
-	def WriteFile(self):
-		with open(os.path.join(directory, filename+".txt"),"w") as text_file: # checks if directory exists; join and writes new file to the path of the first argument; .txt means its a text file
-			text_file.write(AskInformation()) # writes the information to the new file from passed function
-	
-	def DisplayFile(self):
-		print("\nOutput Information:")
-		with open(os.path.join(self.directory, self.filename+".txt"),"r") as read_file: # opens and reads file with the path of the directory
-			contents = read_file.read()
-			print(contents)
-
-	def AskInformation(self):
-		"""Get input information from user"""
-		 # ask inputs from user and making sure its converted into strings
-		name = str(input("Name: "))
-		address = str(input("Address: "))
-		phone_num = str(input("Phone number: "))
-		return f"{name}, {address}, {phone_num}" # inputs will be formed in this output string when called
+def AskInformation():
+	"""Get input information from user"""
+	 # ask inputs from user and making sure its converted into strings
+	name = str(input("Name: "))
+	address = str(input("Address: "))
+	phone_num = str(input("Phone number: "))
+	return f"{name}, {address}, {phone_num}" # inputs will be formed in this output string when called
 
 def main():
 	""" Executes all for functionalitites needed for program. """
@@ -44,7 +29,9 @@ def main():
 	program = Files(directory, filename)
 
 	try: # 
-		program.WriteFile()
+		with open(os.path.join(directory, filename+".txt"),"w") as text_file: # checks if directory exists; join and writes new file to the path of the first argument; .txt means its a text file
+			text_file.write(AskInformation()) # writes the information to the new file from passed function
+	
 		print(f"The Directory \"{directory}\" exists. Writing file \"{filename}\" in that directory....") # display output that directory exists
 
 	except FileNotFoundError: # catches error if directory was not found
@@ -52,9 +39,17 @@ def main():
 		directory= input("") # ask user for new name for a creation of new directory and rewrites directory assignment
 		os.mkdir(directory) # command creates new directory
 
-		program.WriteFile()
-		program.DisplayFile()
+		with open(os.path.join(directory, filename+".txt"),"w") as text_file: # checks if directory exists; join and writes new file to the path of the first argument; .txt means its a text file
+			text_file.write(AskInformation()) # writes the information to the new file from passed function
+	
+		print("\nOutput Information:")
+		with open(os.path.join(directory, filename+".txt"),"r") as read_file: # opens and reads file with the path of the directory
+			contents = read_file.read()
+			print(contents)
 
 	else:
-		program.DisplayFile()
+		print("\nOutput Information:")
+		with open(os.path.join(directory,filename+".txt"),"r") as read_file: # opens and reads file with the path of the directory
+			contents = read_file.read()
+			print(contents)
 main()
